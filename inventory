@@ -1,0 +1,12 @@
+[web]
+localhost
+
+[datacenters:children]
+web
+
+
+[datacenters:vars]
+ansible_ssh_user=
+ansible_ssh_pass=
+asible_sudo_pass=
+

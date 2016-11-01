@@ -1,0 +1,29 @@
+---
+- name: apache installed
+  yum: name=httpd state=present
+
+- name: start apache
+  service: name=httpd state=started enabled=yes
+  notify:
+  - Restart apache
+
+- name: firewall installed
+  yum: name=firewalld state=present
+
+- name: start firewall
+  service: name=firewalld state=started enabled=yes
+
+- command: firewall-cmd --permanent --add-service=http
+  notify:
+  - Restart firewalld
+
+- name: wget installed
+  yum: name=wget state=present
+
+
+- command: /usr/bin/wget http://dl.fedoraproject.org/pub/epel/7/x86_64/e/epel-release-7-8.noarch.rpm
+
+- name: epel-release installed
+  yum: name=epel-release state=present
+
+
